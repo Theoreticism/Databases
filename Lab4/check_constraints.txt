@@ -1,0 +1,18 @@
+According to a few websites I browsed, check constraints are used to limit the accepted values by one or more columns. Any boolean expression that returns true or false can be used to create a check constraint. Check constraints are used to ensure the data in a given database is valid and to maintain data integrity (the accuracy and consistency of data over its entire life-cycle). An example of an advantage for using check constraints would be to ensure some data value is not negative, such as price or quantity of certain goods. Check constraints would ensure there cannot be any negative prices or negative quantities for said goods.
+
+The above examples are good uses of check constraints.
+
+CREATE TABLE Foo (
+Foo_Price int NOT NULL,
+Foo_Quantity int NOT NULL,
+CHECK (Foo_Price > 0 and Foo_Quantity > 0)
+)
+
+There are two specific instances where bad usage of check constraints arises: one is when a check constraint evaluates to UNKNOWN instead of the usual true or false. In this case, the insertion is accepted and does not return an error.
+
+CREATE TABLE Foo_Two (
+Foo_Col int,
+CHECK (Foo_Col = 5)
+)
+
+The second instance is when a check constraint is applied to a newly-created table with no rows, since the check constraint works at the row level. In this case, any check constraint on this table is considered valid, which can bring about some unexpected results.
