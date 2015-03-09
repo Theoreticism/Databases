@@ -58,6 +58,9 @@ where c.city = a.city
 
 select c.name, c.city
 from customers c
-where 
-
-select * from products
+where c.city in
+	(select p.city
+	 from products p
+	 group by p.city
+	 order by count(p.city) ASC
+	 limit 1)
