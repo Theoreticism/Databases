@@ -1,0 +1,22 @@
+Outer joins essentially combine two tables into one - a left table, and a right table. The position of the table is determined only by the order it is entered in the query; the table specified before the outer join statement is the left table, the table specified after is the right table. The combination is limited by a condition specified after the join statement.
+
+A left outer join retains all the rows in the left table, regardless of whether any matches exist in the right table.
+A right outer join retains all the rows in the right table, regardless of whether any matches exist in the left table.
+
+An example of left outer join using our CAP2 database is the following SQL snippet:
+
+select *
+from customers c
+left outer join agents a
+on c.city = a.city
+
+In this example, the result returned is the entirety of the customers table, merged with the agents table for a total of six rows. The right side shows only agents a05 and a06 because they are the only two agents that are based in the same city as a customer is based in (Duluth and Dallas).
+
+An example of right outer join using our CAP2 database is the following SQL snippet:
+
+select *
+from customers c
+right outer join agents a
+on c.city = a.city
+
+This example is identical to the previous one, except with right outer join. As can be expected, the entirety of the agents table is returned along with only the matched cities in the left table, the customers table. Again, only Duluth and Dallas are matched, but since there are two customers to each of the cities, four total results from the customers table is returned.
