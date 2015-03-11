@@ -44,8 +44,15 @@ order by totals.cName DESC
 
 select a.name, p.name, c.name
 from agents a, products p, customers c, orders o
-where 
-
-select * from orders
+where p.pid = o.pid
+and c.cid = o.cid
+and a.aid = o.aid
+and a.city = 'Tokyo'
 
 -- 6. Check the accuracy of the dollars column in the Orders table
+
+select o.*
+from orders o, products p, customers c
+where p.pid = o.pid
+and c.cid = o.cid
+and (p.priceUSD * o.qty) - c.discount != o.dollars
