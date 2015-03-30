@@ -1,0 +1,87 @@
+Lab 7 - Normalization
+
+Part I
+
+1. For maximum performance and minimize redundancy, this table needs to be normalized. We will begin with first normal form.
+
+2. |-------------------------------------------------------|
+   | PackageID | TagNumber | InstallDate | SoftwareCostUSD |
+   |   AC01    |   32808   |  09-13-2005 |     754.95      |
+   |   DB32    |   32808   |  12-03-2005 |     380.00      |
+   |   DB32    |   37691   |  06-15-2005 |     380.00      |
+   |   DB33    |   57772   |  05-27-2005 |     412.77      |
+   |   WP08    |   32808   |  01-12-2006 |     185.00      |
+   |   WP08    |   37691   |  06-15-2005 |     227.05      |
+   |   WP08    |   57222   |  05-27-2005 |     170.24      |
+   |   WP09    |   59836   |  10-30-2005 |      35.00      |
+   |   WP09    |   77740   |  05-27-2005 |      35.00      |
+   |-------------------------------------------------------|
+
+3. The primary key is PackageID + TagNumber, which uniquely identifies every entry in the table.
+
+Part II
+
+4. |---------------------------------------------------------------------------------------------|
+   | PackageID | TagNumber | InstallDate | SoftwareCostUSD | SoftwarePackageName | ComputerModel |
+   |   AC01    |   32808   |  09-13-2005 |     754.95      |  GenericPackage 01  |      IBM      |
+   |   DB32    |   32808   |  12-03-2005 |     380.00      |    Debuntu 32.32    |      IBM      |
+   |   DB32    |   37691   |  06-15-2005 |     380.00      |    Debuntu 32.32    |    Windows    |
+   |   DB33    |   57772   |  05-27-2005 |     412.77      |    Debuntu 33.33    |     Apple     |
+   |   WP08    |   32808   |  01-12-2006 |     185.00      | GenericPackage 2008 |      IBM      |
+   |   WP08    |   37691   |  06-15-2005 |     227.05      | GenericPackage 2008 |    Windows    |
+   |   WP08    |   57222   |  05-27-2005 |     170.24      | GenericPackage 2008 |     Dell      |
+   |   WP09    |   59836   |  10-30-2005 |      35.00      | GenericPackage 2009 |     Lenovo    |
+   |   WP09    |   77740   |  05-27-2005 |      35.00      | GenericPackage 2009 |  GenericModel |
+   |---------------------------------------------------------------------------------------------|
+
+5.	PackageID -> SoftwarePackageName
+	TagNumber -> ComputerModel
+	PackageID.ComputerModel -> SoftwareCostUSD
+
+6. This table is not in 3NF because it is not in 2NF. The primary key for this table is the composite key {PackageID, TagNumber}. 2NF states that the table must be in 1NF and no non-prime attribute is dependent on any proper subset of any candidate key of the table. In this table, SoftwarePackageName is dependent on only PackageID and ComputerModel is dependent on only TagNumber.
+
+Part III
+
+7. The primary key for the first table would be PackageID, and the primary key for the second table would be TagNumber.
+
+8.	PackageID -> SoftwarePackageName
+	TagNumber -> ComputerModel
+	PackageID.ComputerModel -> SoftwareCostUSD
+
+9. The new tables are in 3NF because they are in 2NF and in both tables, every non-prime attribute is determined only by the primary keys for each respective table and nothing else.
+
+10. |------------Packages-------------|
+    | PackageID | SoftwarePackageName |
+	|    AC01   |  GenericPackage 01  |
+	|    DB32   |    Debuntu 32.32    |
+	|    DB33   |    Debuntu 33.33    |
+	|    WP08   | GenericPackage 2008 |
+	|    WP09   | GenericPackage 2009 |
+	|---------------------------------|
+	                 |
+	                 |
+	                /|\
+	|--------------------InstallDates-----------------------|
+	| PackageID | TagNumber | InstallDate | SoftwareCostUSD |
+	|   AC01    |   32808   |  09-13-2005 |     754.95      |
+	|   DB32    |   32808   |  12-03-2005 |     380.00      |
+	|   DB32    |   37691   |  06-15-2005 |     380.00      |
+	|   DB33    |   57772   |  05-27-2005 |     412.77      |
+	|   WP08    |   32808   |  01-12-2006 |     185.00      |
+	|   WP08    |   37691   |  06-15-2005 |     227.05      |
+	|   WP08    |   57222   |  05-27-2005 |     170.24      |
+	|   WP09    |   59836   |  10-30-2005 |      35.00      |
+	|   WP09    |   77740   |  05-27-2005 |      35.00      |
+	|-------------------------------------------------------|
+	                \|/
+	                 |
+	                 |
+	|---------Computers---------|
+	| TagNumber | ComputerModel |
+	|   32808   |      IBM      |
+	|   37691   |    Windows    |
+	|   57772   |     Apple     |
+	|   57222   |      Dell     |
+	|   59836   |    Lenovo     |
+	|   77740   |  GenericModel |
+	|---------------------------|
