@@ -50,8 +50,8 @@ Part III
 
 9. The new tables are in 3NF because they are in 2NF and in both tables, every non-prime attribute is determined only by the primary keys for each respective table and nothing else.
 
-10. |------------Packages-------------|
-    | PackageID | SoftwarePackageName |
+10.	|------------Packages-------------|
+	| PackageID | SoftwarePackageName |
 	|    AC01   |  GenericPackage 01  |
 	|    DB32   |    Debuntu 32.32    |
 	|    DB33   |    Debuntu 33.33    |
