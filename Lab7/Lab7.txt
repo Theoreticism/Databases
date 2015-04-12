@@ -59,7 +59,7 @@ Part III
 	|    WP09   | GenericPackage 2009 |
 	|---------------------------------|
 	                 |
-	                 |
+	                 | PackageID
 	                /|\
 	|--------------------InstallDates-----------------------|
 	| PackageID | TagNumber | InstallDate | SoftwareCostUSD |
@@ -74,7 +74,7 @@ Part III
 	|   WP09    |   77740   |  05-27-2005 |      35.00      |
 	|-------------------------------------------------------|
 	                \|/
-	                 |
+	                 | TagNumber
 	                 |
 	|---------Computers---------|
 	| TagNumber | ComputerModel |
